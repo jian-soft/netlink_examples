@@ -59,13 +59,13 @@ int recv_callback(struct nl_msg* recv_msg, void* arg)
 
 int main(int argc, char* argv[])
 {
-	//创建并连接genl socket
-	struct nl_sock *sk = nl_socket_alloc();
-	genl_connect(sk);   
+    //创建并连接genl socket
+    struct nl_sock *sk = nl_socket_alloc();
+    genl_connect(sk);
 
-	int family_id;
-	family_id = genl_ctrl_resolve(sk, FAMILY_NAME);
-	if (family_id < 0) {
+    int family_id;
+    family_id = genl_ctrl_resolve(sk, FAMILY_NAME);
+    if (family_id < 0) {
         printf("generic netlink family '" FAMILY_NAME "' NOT REGISTERED\n");
         nl_socket_free(sk);
         exit(-1);
@@ -91,7 +91,7 @@ int main(int argc, char* argv[])
 
     //接收消息
     nl_recvmsgs_default(sk);
-  
+
 nla_put_failure: //referenced by NLA_PUT_STRING 
     nl_socket_free(sk);
 
